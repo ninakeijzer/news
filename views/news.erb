@@ -7,7 +7,7 @@
 
     <!-- Google Fonts -->
     <!-- Swap out "Roboto" for the font(s) you want to use -->
-    <link href="https://fonts.googleapis.com/css?family=Krona+One|Merriweather&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oxanium&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
@@ -18,46 +18,33 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title>News & Weather</title>
+    <title>Your local news & weather</title>
   </head>
   <body>
 
   <div class="container mt-5">
         <hr>
-        <h1>Current weather</h1> <br>
+        <h1> — Your current weather report — </h1> <br>
         <div class = "row">
-            <div class = "col">
-                <p>Temperature: <%=@current_temperature%> </p>
-                <p>Conditions: <%=@current_summary  %>
-                <% if @current_icon == "cloudy" %>
-                    <i class="fas fa-cloud"></i>
-                <% elsif @current_icon == "rain" %>
-                    <i class="fas fa-cloud-rain"></i>
-                <% elsif @current_icon == "fog" %>
-                    <i class="fas fa-smog"></i>
-                <% elsif @current_icon == "partly-cloudy-night" %>
-                    <i class="fas fa-cloud-moon"></i>
-                <% elsif @current_icon == "partly-cloudy-day" %>
-                    <i class="fas fa-cloud-sun"></i>
-                <% elsif @current_icon == "clear-night" %>
-                    <i class="fas fa-moon"></i>
-                <% elsif @current_icon == "sleet" %>
-                   <i class="fas fa-cloud-sleet"></i>
-                <% elsif @current_icon == "snow" %>
-                    <i class="fas fa-snowflake"></i>
-                <% elsif @current_icon == "wind" %>
-                    <i class="fas fa-wind"></i>
-                <% elsif @current_icon == "clear-day" %>
-                    <i class="fas fa-sun"></i>
-                <% end %> </p>
+            <div class = "col-sm-3"> </div>
+            <div class = "col-sm-6">
+                 <div class="card">
+                  <div class="card-body">
+                     <h2>Temperature (F): <strong><%=@current_temperature%></strong> </h2>
+                     <h2>UV index: <strong><%=@current_uvIndex %></strong>
+                     <h2>Windspeed: <strong><%=@current_windSpeed %></strong>
+                     <h2>Conditions: <strong><%=@current_summary %></strong></h2>
             </div>
+            </div>
+        </div>
+        </div>
         </div>
 
 <div class="container">
       <div class="row">
         <div class="col text-left">
           <hr class="my-4">
-          <h1>Weather forecast </h1>
+          <h1>— Your 5-day weather forecast — </h1>
         </div>
         </div>
         </div>
@@ -67,9 +54,12 @@
   <thead>
     <tr>
       <th scope="col">Day</th>
-      <th scope="col">Temperature (low)</th>
-      <th scope="col">Temperature (high)</th>
-      <th scope="col">Summary</th>
+      <th scope="col">Min temperature </th>
+      <th scope="col">Max temperature </th>
+      <th scope="col">UV index </th>
+      <th scope="col">Chance of precipitation </th>
+      <th scope="col">Windspeed </th>
+      <th scope="col">Conditions</th>
     </tr>
   </thead>
   <tbody>
@@ -78,6 +68,9 @@
       <td><%= Time.at(day["time"]).strftime("%a") %> </td>
       <td><%= day["temperatureLow"] %></td>
       <td><%= day["temperatureHigh"] %></td>
+      <td><%= day["uvIndex"] %></td>
+      <td><%= day["precipProbability"] %></td>
+      <td><%= day["windSpeed"] %></td>
       <td><%= day["summary"] %></td>
     </tr>
   <% end %>
@@ -87,48 +80,29 @@
 
 <div class="container">
       <div class="row">
-        <div class="col text-center">
+        <div class="col text-left">
           <hr class="my-4">
-          <h2>Latest news stories <i class="fas fa-newspaper"></i></h2>
+          <h1>— Your latest local news — </h1>
         </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-sm-4 text-center">
-          <p><%= @title[0] %> </p>
-          <a href="<%= @story_link[0] %>" class="btn btn-info">Full article</a>
         </div>
-        <div class="col-sm-4 text-center">
-         <p><%= @title[1] %> </p>
-          <a href="<%= @story_link[1] %>" class="btn btn-info">Full article</a>
         </div>
-        <div class="col-sm-4 text-center">
-          <p><%= @title[2] %> </p>
-          <a href="<%= @story_link[2] %>" class="btn btn-info">Full article</a>
-        </div>
-      </div>
-      <hr>
-    </div>
 
-    <div class="container">
-           </div>
-      <div class="row mt-4">
-        <div class="col-sm-4 text-center">
-          <p><%= @title[3] %> </p>
-          <a href="<%= @story_link[3] %>" class="btn btn-info">Full article</a>
-        </div>
-        <div class="col-sm-4 text-center">
-         <p><%= @title[4] %> </p>
-          <a href="<%= @story_link[4] %>" class="btn btn-info">Full article</a>
-        </div>
-        <div class="col-sm-4 text-center">
-          <p><%= @title[5] %> </p>
-          <a href="<%= @story_link[5] %>" class="btn btn-info">Full article</a>
-        </div>
-      </div>
-      <hr>
-    </div>
+        
+        <!-- Just a line, a "horizontal rule" with some space on the y-axis -->
+        <hr class="my-4">
 
-
+<div class="container">
+      <div class="row">
+      <div class="col-sm">
+        <% j =1%>
+   <% for articlenumber in @newsarray.slice(0, 5)%>
+     <p> <strong> Headline <%= j %>:</strong> <%= articlenumber["title"] %> </p>
+     <p><strong> URL: </strong><%= articlenumber["url"] %></p>
+     <br>
+     <% j = j+1 %>
+   <% end %>
+   </div>
+        </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

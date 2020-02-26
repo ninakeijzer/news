@@ -1,8 +1,27 @@
 body {
   font-family: 'Oxanium';
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1{
   font-family: 'Oxanium';
+  color: white;
+  text-align: center;
+}
+
+h2{
+ font-family: 'Oxanium';
+  color: white;
+   text-align: center;
+   font-size: 30px;
+} 
+
+h3, h4, h5, h6 {
+  font-family: 'Oxanium';
+  color: white;
+}
+
+p, th, td{
+color: white;
 }
 
 body {
@@ -16,5 +35,16 @@ body {
   /* Background */
   background-color: rgba(40, 6, 83, 0.151);
   color: white;
-  text-shadow: 1px 1px 1px darkgrey;
+}
+
+.card{
+  background-color: rgba(216, 200, 236, 0.151);
+  height: 200px;
+}
+
+.card-title{
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  vertical-align: middle;
 }
