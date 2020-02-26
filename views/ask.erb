@@ -7,7 +7,7 @@
 
     <!-- Google Fonts -->
     <!-- Swap out "Roboto" for the font(s) you want to use -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Krona+One|Merriweather&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
@@ -18,12 +18,27 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title>News</title>
+    <title>Your local news & weather</title>
   </head>
   <body>
 
-    <div class="container mt-5">
-      <h1>News</h1>
+   <!-- Jumbotron -->
+    <div class="jumbotron">
+      <div class="container">
+      <h1 class="display-4">Your local weather and news</h1>
+      <p class="lead">A good forecast gets you better on your way!</p>
+    </div>
+
+    <div class="container">
+    <hr>
+        <div class = "row">         
+            <div class = "col">
+                <form action="/news">
+                    <input type = "text" name="q">
+                    <button type = "submit">Search your location</submit>
+                </form>
+            </div>
+        </div>   
     </div>
 
     <!-- Optional JavaScript -->

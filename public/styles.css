@@ -1,0 +1,20 @@
+body {
+  font-family: 'Oxanium';
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oxanium';
+}
+
+body {
+ background-attachment: fixed;
+ background-image: url("https://github.com/ninakeijzer/ninakeijzer.github.io/blob/f17831cd41756949e1e7038965697ad3ce3dad95/milkyway.jpg?raw=true");
+ background-size: cover;
+}
+
+
+.jumbotron {
+  /* Background */
+  background-color: rgba(40, 6, 83, 0.151);
+  color: white;
+  text-shadow: 1px 1px 1px darkgrey;
+}
